@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Terminal | Ringgit-Tap</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://googleapis.com" rel="stylesheet">
+</head>
+<body>
+
+<div class="terminal-container">
+    <div class="header">
+        <span class="logo">☕</span>
+        <h1>Vendor Soundbox</h1>
+    </div>
+
+    <!-- Paparan Jumlah -->
+    <div class="display-area">
+        <div class="label">JUMLAH BAYARAN</div>
+        <div class="amount-display">RM <span id="current-amount">0.00</span></div>
+        <input type="text" id="memo-input" placeholder="Nota: Caj Perkhidmatan" maxlength="20">
+    </div>
+
+    <!-- QR Area -->
+    <div id="qr-display" class="qr-placeholder">
+        <p>Masukkan jumlah & tekan [JANA QR]</p>
+    </div>
+
+    <!-- Keypad POS -->
+    <div class="keypad">
+        <button onclick="appendNum('1')">1</button>
+        <button onclick="appendNum('2')">2</button>
+        <button onclick="appendNum('3')">3</button>
+        <button onclick="appendNum('4')">4</button>
+        <button onclick="appendNum('5')">5</button>
+        <button onclick="appendNum('6')">6</button>
+        <button onclick="appendNum('7')">7</button>
+        <button onclick="appendNum('8')">8</button>
+        <button onclick="appendNum('9')">9</button>
+        <button class="btn-clear" onclick="clearDisplay()">C</button>
+        <button onclick="appendNum('0')">0</button>
+        <button onclick="appendNum('.')">.</button>
+    </div>
+
+    <button class="btn-generate" onclick="generateDynamicQR()">JANA KOD QR</button>
+</div>
+
+<!-- Library QR Offline -->
+<script src="https://cloudflare.com"></script>
+<script src="script.js"></script>
+</body>
+</html>
