@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vendor Terminal | Ringgit-Tap</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Font tetap dikekalkan jika anda menggunakannya -->
+    <!-- Menggunakan Google Fonts Inter sebagai pengganti pautan umum -->
     <link href="https://googleapis.com" rel="stylesheet">
 </head>
 <body>
@@ -47,15 +47,18 @@
     <button class="btn-generate" onclick="generateDynamicQR()">JANA KOD QR</button>
 </div>
 
-<!-- URUTAN SKRIP (Sangat Penting) -->
+<!-- URUTAN SKRIP (KRITIKAL) -->
 
-<!-- 1. Library Utama: Enjin QRCode asal -->
+<!-- 1. Fail Tetapan: Mesti dimuatkan pertama untuk alamat wallet -->
+<script src="config.js"></script>
+
+<!-- 2. Library Utama: Enjin QRCode dari CDN yang sah -->
 <script src="https://jsdelivr.net"></script>
 
-<!-- 2. Modul Wrapper: Fail qrcode-engine.js yang kita cipta -->
+<!-- 3. Modul Wrapper: Menghubungkan logik dengan enjin QR -->
 <script src="qrcode-engine.js"></script>
 
-<!-- 3. Logik Aplikasi: Fail script.js anda -->
+<!-- 4. Logik Aplikasi: Mengawal butang dan paparan -->
 <script src="script.js"></script>
 
 </body>
