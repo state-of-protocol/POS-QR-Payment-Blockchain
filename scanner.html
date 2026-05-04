@@ -1,44 +1,69 @@
 <!DOCTYPE html>
 <html lang="ms">
 <head>
-    <title>Customer Scanner | Ringgit-Tap</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css"> <!-- Guna style sedia ada -->
+    <title>Pembayaran Ringgit-Tap</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #reader { width: 100%; border-radius: 15px; overflow: hidden; border: 2px solid #4A3728; }
+        .payment-box { background: white; padding: 20px; border-radius: 15px; margin-top: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .confirm-btn { background: #4CAF50; color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; font-weight: bold; cursor: pointer; }
+    </style>
 </head>
 <body>
-    <div class="terminal-container">
-        <h2>Imbas & Bayar</h2>
-        <div id="reader" style="width: 100%;"></div>
-        <div id="result-area" style="display:none; margin-top:20px;">
-            <p id="tx-info"></p>
-            <button class="btn-generate" onclick="confirmPayment()">SAHKAN BAYARAN</button>
-        </div>
+
+<div class="terminal-container">
+    <div class="header">
+        <span class="logo">📱</span>
+        <h1>Imbas Bayaran</h1>
     </div>
 
-    <!-- Script Urutan -->
-    <script src="html5-qrcode.min.js"></script>
-    <script src="config.js"></script>
-    <script>
-        const html5QrCode = new Html5Qrcode("reader");
-        let scannedData = null;
+    <!-- Scanner Kamera -->
+    <div id="reader"></div>
 
-        html5QrCode.start(
-            { facingMode: "environment" }, 
-            { fps: 10, qrbox: { width: 250, height: 250 } },
-            (decodedText) => {
-                if (decodedText.startsWith("lum:")) {
-                    scannedData = decodedText;
-                    document.getElementById('tx-info').innerText = "Data Ditemui: " + decodedText;
-                    document.getElementById('result-area').style.display = "block";
-                    html5QrCode.stop(); // Berhenti kamera selepas scan
-                }
-            }
-        );
+    <!-- Paparan Hasil Scan (Akan muncul selepas scan berjaya) -->
+    <div id="payment-details" class="payment-box" style="display: none;">
+        <h3>Pengesahan Bayaran</h3>
+        <p><strong>Penerima:</strong> <br><span id="vendor-addr" style="font-size: 0.8em; color: #666;"></span></p>
+        <p><strong>Jumlah:</strong> <br><span id="amount-lum" style="font-size: 1.5em; color: #4A3728;"></span> LUM</p>
+        <hr>
+        <button class="confirm-btn" onclick="processPayment()">HANTAR BAYARAN</button>
+    </div>
+</div>
 
-        function confirmPayment() {
-            alert("Menghantar transaksi ke Blockchain...");
-            // Di sini nanti kita letak logik API Blockchain
+<!-- URUTAN SKRIP -->
+<script src="html5-qrcode.min.js"></script>
+<script src="config.js"></script>
+<script>
+    const html5QrCode = new Html5Qrcode("reader");
+
+    const qrConfig = { fps: 10, qrbox: { width: 250, height: 250 } };
+
+    html5QrCode.start({ facingMode: "environment" }, qrConfig, (decodedText) => {
+        // Logik membaca protokol lum:
+        if (decodedText.startsWith("lum:")) {
+            html5QrCode.stop(); // Berhenti kamera
+            parseAndShow(decodedText);
         }
-    </script>
+    });
+
+    function parseAndShow(data) {
+        // Contoh data: lum:wallet?amount=170000
+        const urlParams = new URLSearchParams(data.split('?')[1]);
+        const wallet = data.split(':')[1].split('?')[0];
+        const amount = urlParams.get('amount');
+
+        document.getElementById('vendor-addr').innerText = wallet;
+        document.getElementById('amount-lum').innerText = Number(amount).toLocaleString();
+        document.getElementById('payment-details').style.display = "block";
+    }
+
+    function processPayment() {
+        alert("Transaksi sedang diproses ke Blockchain LUM...");
+        // Langkah seterusnya: Integrasi Wallet API
+    }
+</script>
+
 </body>
 </html>
