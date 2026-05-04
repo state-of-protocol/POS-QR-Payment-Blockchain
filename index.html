@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vendor Terminal | Ringgit-Tap</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Font Google yang betul -->
+    
+    <!-- PERBAIKAN: Pautan Google Fonts yang lengkap untuk paparan kemas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com" rel="stylesheet">
 </head>
 <body>
@@ -23,12 +26,12 @@
         <input type="text" id="memo-input" placeholder="Nota: Caj Perkhidmatan" maxlength="20">
     </div>
 
-    <!-- QR Area -->
+    <!-- Kawasan Paparan QR -->
     <div id="qr-display" class="qr-placeholder">
         <p>Tekan [JANA QR] untuk RM 10</p>
     </div>
 
-    <!-- Keypad POS -->
+    <!-- Keypad POS Digital -->
     <div class="keypad">
         <button onclick="appendNum('1')">1</button>
         <button onclick="appendNum('2')">2</button>
@@ -47,18 +50,18 @@
     <button class="btn-generate" onclick="generateDynamicQR()">JANA KOD QR</button>
 </div>
 
-<!-- URUTAN SKRIP (LOKAL & MODULAR) -->
+<!-- URUTAN SKRIP (LOKAL & MODULAR - KRITIKAL) -->
 
-<!-- 1. Enjin Utama (Fail yang anda muat turun dan simpan di folder yang sama) -->
+<!-- 1. Enjin Utama (Wajib di atas sekali) -->
 <script src="qrcode.min.js"></script>
 
-<!-- 2. Fail Tetapan Anda -->
+<!-- 2. Fail Tetapan (Alamat Wallet & Kadar LUM) -->
 <script src="config.js"></script>
 
-<!-- 3. Modul Wrapper Anda -->
+<!-- 3. Modul Wrapper (Penghubung Enjin & Logik) -->
 <script src="qrcode-engine.js"></script>
 
-<!-- 4. Logik Aplikasi -->
+<!-- 4. Logik Aplikasi (Fungsi Keypad & Butang) -->
 <script src="script.js"></script>
 
 </body>
