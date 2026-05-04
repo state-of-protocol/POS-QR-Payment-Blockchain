@@ -1,0 +1,96 @@
+:root {
+    --cream: #F5F5DC;
+    --espresso: #4A3728;
+    --latte: #C2B280;
+    --white: #FFFFFF;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #E1D8C1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.terminal-container {
+    width: 100%;
+    max-width: 400px;
+    background: var(--cream);
+    padding: 30px;
+    border-radius: 30px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.header h1 { font-size: 1.2rem; color: var(--espresso); margin-bottom: 20px; }
+
+.display-area {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    border: 2px solid var(--latte);
+}
+
+.amount-display {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2.5rem;
+    color: var(--espresso);
+}
+
+#memo-input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--latte);
+    text-align: center;
+    padding: 5px;
+    font-size: 0.8rem;
+    outline: none;
+}
+
+.qr-placeholder {
+    width: 200px;
+    height: 200px;
+    background: var(--white);
+    margin: 0 auto 20px auto;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed var(--latte);
+    font-size: 0.7rem;
+}
+
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.keypad button {
+    padding: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 12px;
+    border: 1px solid var(--latte);
+    background: var(--white);
+    color: var(--espresso);
+    cursor: pointer;
+}
+
+.keypad button:active { background: var(--latte); }
+
+.btn-generate {
+    width: 100%;
+    padding: 15px;
+    background: var(--espresso);
+    color: var(--white);
+    border: none;
+    border-radius: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
