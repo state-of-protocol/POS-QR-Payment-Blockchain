@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vendor Terminal | Ringgit-Tap</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Menggunakan Google Fonts Inter sebagai pengganti pautan umum -->
+    <!-- Font Google yang betul -->
     <link href="https://googleapis.com" rel="stylesheet">
 </head>
 <body>
@@ -47,18 +47,18 @@
     <button class="btn-generate" onclick="generateDynamicQR()">JANA KOD QR</button>
 </div>
 
-<!-- URUTAN SKRIP (KRITIKAL) -->
+<!-- URUTAN SKRIP (KRITIKAL & SPESIFIK) -->
 
-<!-- 1. Fail Tetapan: Mesti dimuatkan pertama untuk alamat wallet -->
+<!-- 1. Enjin Utama (Mesti alamat penuh ke fail .js) -->
+<script src="https://cloudflare.com"></script>
+
+<!-- 2. Fail Tetapan Anda -->
 <script src="config.js"></script>
 
-<!-- 2. Library Utama: Enjin QRCode dari CDN yang sah -->
-<script src="https://jsdelivr.net"></script>
-
-<!-- 3. Modul Wrapper: Menghubungkan logik dengan enjin QR -->
+<!-- 3. Modul Wrapper Anda -->
 <script src="qrcode-engine.js"></script>
 
-<!-- 4. Logik Aplikasi: Mengawal butang dan paparan -->
+<!-- 4. Logik Aplikasi -->
 <script src="script.js"></script>
 
 </body>
