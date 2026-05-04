@@ -1,15 +1,16 @@
 /**
  * script.js - Logik Utama Vendor
  */
-const WALLET_VENDOR = "lum13fgcln9k7ft2pkndjh4xhzlv3y3l8e450vnztl";
-const LUM_UNITS = "170000";
-
 function generateDynamicQR() {
-    const qrData = `lum:${WALLET_VENDOR}?amount=${LUM_UNITS}`;
+    // Ambil data dari config.js
+    const wallet = VENDOR_SETTINGS.wallet_address;
+    const amountLUM = VENDOR_SETTINGS.default_myr * VENDOR_SETTINGS.conversion_rate;
+    const prefix = VENDOR_SETTINGS.currency_prefix;
+
+    const qrData = `${prefix}:${wallet}?amount=${amountLUM}`;
     
-    // Panggil modul QR yang kita cipta tadi
+    // Panggil modul QR
     QREngine.generate('qr-display', qrData, 220);
     
-    console.log("QR Statik 170k LUM dijana secara modular.");
-    // startMonitoring(); // Panggil fungsi pantau jika perlu
+    console.log(`QR dijana untuk ${wallet} berjumlah ${amountLUM} units.`);
 }
