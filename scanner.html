@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <title>Customer Scanner | Ringgit-Tap</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css"> <!-- Guna style sedia ada -->
+</head>
+<body>
+    <div class="terminal-container">
+        <h2>Imbas & Bayar</h2>
+        <div id="reader" style="width: 100%;"></div>
+        <div id="result-area" style="display:none; margin-top:20px;">
+            <p id="tx-info"></p>
+            <button class="btn-generate" onclick="confirmPayment()">SAHKAN BAYARAN</button>
+        </div>
+    </div>
+
+    <!-- Script Urutan -->
+    <script src="html5-qrcode.min.js"></script>
+    <script src="config.js"></script>
+    <script>
+        const html5QrCode = new Html5Qrcode("reader");
+        let scannedData = null;
+
+        html5QrCode.start(
+            { facingMode: "environment" }, 
+            { fps: 10, qrbox: { width: 250, height: 250 } },
+            (decodedText) => {
+                if (decodedText.startsWith("lum:")) {
+                    scannedData = decodedText;
+                    document.getElementById('tx-info').innerText = "Data Ditemui: " + decodedText;
+                    document.getElementById('result-area').style.display = "block";
+                    html5QrCode.stop(); // Berhenti kamera selepas scan
+                }
+            }
+        );
+
+        function confirmPayment() {
+            alert("Menghantar transaksi ke Blockchain...");
+            // Di sini nanti kita letak logik API Blockchain
+        }
+    </script>
+</body>
+</html>
