@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vendor Terminal | Ringgit-Tap</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Font tetap dikekalkan jika anda menggunakannya -->
     <link href="https://googleapis.com" rel="stylesheet">
 </head>
 <body>
@@ -18,13 +19,13 @@
     <!-- Paparan Jumlah -->
     <div class="display-area">
         <div class="label">JUMLAH BAYARAN</div>
-        <div class="amount-display">RM <span id="current-amount">0.00</span></div>
+        <div class="amount-display">RM <span id="current-amount">10.00</span></div>
         <input type="text" id="memo-input" placeholder="Nota: Caj Perkhidmatan" maxlength="20">
     </div>
 
     <!-- QR Area -->
     <div id="qr-display" class="qr-placeholder">
-        <p>Masukkan jumlah & tekan [JANA QR]</p>
+        <p>Tekan [JANA QR] untuk RM 10</p>
     </div>
 
     <!-- Keypad POS -->
@@ -46,8 +47,16 @@
     <button class="btn-generate" onclick="generateDynamicQR()">JANA KOD QR</button>
 </div>
 
-<!-- Library QR Offline -->
-<script src="https://cloudflare.com"></script>
+<!-- URUTAN SKRIP (Sangat Penting) -->
+
+<!-- 1. Library Utama: Enjin QRCode asal -->
+<script src="https://jsdelivr.net"></script>
+
+<!-- 2. Modul Wrapper: Fail qrcode-engine.js yang kita cipta -->
+<script src="qrcode-engine.js"></script>
+
+<!-- 3. Logik Aplikasi: Fail script.js anda -->
 <script src="script.js"></script>
+
 </body>
 </html>
